@@ -1,4 +1,4 @@
-without changing the styling and structure only change the content to be for kenyan insurance company {% extends 'base.html'%}
+{% extends 'base.html'%}
 {% load static %}
 {% block content %}
 
@@ -28,11 +28,11 @@ without changing the styling and structure only change the content to be for ken
                 </div>
                 <div class="card-body text-center p-t-0">
                     {% if request.user.is_authenticated %}
-                  <h3 class="font-light">Wellcome Back, {{request.user.username}}!!</h3>
+                  <h3 class="font-light">Karibu Tena, {{request.user.username}}!!</h3>
                   {% endif %}
-                  <p> {{ user.full_name }} Welcome to the Muranga Family! we are glad that you are visite this dashboard. we will be happy to help you grow your business.</p>
+                  <p>Welcome to Jubilee Insurance Dashboard! We're committed to protecting what matters most to you with comprehensive insurance solutions tailored for Kenya.</p>
 
-                  <button class="btn btn-light">Update</button>
+                  <button class="btn btn-light">Update Profile</button>
                 </div>
                 <div class="confetti">
                   <div class="confetti-piece"></div>
@@ -66,9 +66,9 @@ without changing the styling and structure only change the content to be for ken
                     &lt;/div&gt;
                     &lt;/div&gt;
                     &lt;div class="card-body text-center"&gt;
-                    &lt;h3 class="font-light"&gt;Wellcome Back, John!!&lt;/h3&gt;
-                    &lt;p&gt;Lorem ipsum is simply dummy text of the printing and typesetting industry.Lorem ipsum has been&lt;/p&gt;
-                    &lt;button class="btn btn-light"&gt;Update &lt;/button&gt;
+                    &lt;h3 class="font-light"&gt;Karibu Tena, John!!&lt;/h3&gt;
+                    &lt;p&gt;Welcome to Jubilee Insurance Dashboard! We're committed to protecting what matters most to you.&lt;/p&gt;
+                    &lt;button class="btn btn-light"&gt;Update Profile&lt;/button&gt;
                     &lt;/div&gt;
                     &lt;/div&gt;</code>
                     </pre>
@@ -93,8 +93,8 @@ without changing the styling and structure only change the content to be for ken
                       </g>
                     </svg>
                   </div>
-                  <h5>8,50,49 ksh</h5>
-                  <p>Monthly Income</p><a class="btn-arrow arrow-primary" href="javascript:void(0)"><i class="toprightarrow-primary fa fa-arrow-up me-2"></i>95.54% </a>
+                  <h5>8,50,49 Ksh</h5>
+                  <p>Monthly Premiums</p><a class="btn-arrow arrow-primary" href="javascript:void(0)"><i class="toprightarrow-primary fa fa-arrow-up me-2"></i>95.54% </a>
                   <div class="parrten">
                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewbox="0 0 448.057 448.057" style="enable-background:new 0 0 448.057 448.057;" xml:space="preserve">
                       <g>
@@ -124,8 +124,8 @@ without changing the styling and structure only change the content to be for ken
                       </g>
                     </svg>
                   </div>
-                  <h5>2,03,59 ksh </h5>
-                  <p>Annual losses</p><a class="btn-arrow arrow-secondary" href="javascript:void(0)"><i class="toprightarrow-secondary fa fa-arrow-up me-2"></i>90.54% </a>
+                  <h5>2,03,59 Ksh </h5>
+                  <p>Claims Paid</p><a class="btn-arrow arrow-secondary" href="javascript:void(0)"><i class="toprightarrow-secondary fa fa-arrow-up me-2"></i>90.54% </a>
                   <div class="parrten">
                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewbox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
                       <g>
@@ -144,9 +144,9 @@ without changing the styling and structure only change the content to be for ken
           <div class="card income-card">
             <div class="card-header">
               <div class="header-top d-sm-flex align-items-center">
-                <h5>Population  overview</h5>
+                <h5>Policy Growth Overview</h5>
                 <div class="center-content">
-                  <p class="d-sm-flex align-items-center"><span class="font-primary m-r-10 f-w-700">$859.25k</span><i class="toprightarrow-primary fa fa-arrow-up m-r-10"></i>86% More than last year</p>
+                  <p class="d-sm-flex align-items-center"><span class="font-primary m-r-10 f-w-700">Ksh 859.25k</span><i class="toprightarrow-primary fa fa-arrow-up m-r-10"></i>86% More than last year</p>
                 </div>
                 <div class="setting-list">
                   <ul class="list-unstyled setting-option">
@@ -169,10 +169,10 @@ without changing the styling and structure only change the content to be for ken
                 <pre><code class="language-html" id="yearly-overview">&lt;div class="card income-card"&gt; 
                     &lt;div class="card-header"&gt;
                     &lt;div class="header-top d-sm-flex align-items-center"&gt;
-                    &lt;h5&gt; yearly overview  &lt;/h5&gt;
+                    &lt;h5&gt; Policy Growth Overview  &lt;/h5&gt;
                     &lt;div class="center-content" &gt;
                     &lt;p&gt; 
-                        &lt;span class="font-primary fontbold-600" &gt; $859.25k &lt;/span&gt;
+                        &lt;span class="font-primary fontbold-600" &gt; Ksh 859.25k &lt;/span&gt;
                         &lt;i class="toprightarrow-primary fa fa-arrow-up m-l-10 m-r-10" &gt; &lt;/i&gt;
                         86% More than last year
                     &lt;/p&gt; 
@@ -204,7 +204,7 @@ without changing the styling and structure only change the content to be for ken
               <div class="card">
                 <div class="card-header">
                   <div class="header-top d-sm-flex align-items-center">
-                    <h5>Growth Overview</h5>
+                    <h5>Customer Growth</h5>
                     <div class="center-content">
                       <p class="d-flex align-items-center"><i class="toprightarrow-primary fa fa-arrow-up me-2"></i>80% Growth</p>
                     </div>
@@ -229,7 +229,7 @@ without changing the styling and structure only change the content to be for ken
                     <pre><code class="language-html" id="sell-overview">                                     &lt;div class="card"&gt; 
 &lt;div class="card-header"&gt;
 &lt;div class="header-top d-sm-flex align-items-center"&gt;
-&lt;h5&gt; Sell Overview &lt;/h5&gt;
+&lt;h5&gt; Customer Growth &lt;/h5&gt;
  &lt;div class="center-content" &gt;
    &lt;p class="d-flex align-items-center"&gt;                                        
      &lt;i class="toprightarrow-primary fa fa-arrow-up me-2" &gt; &lt;/i&gt;
@@ -260,7 +260,7 @@ without changing the styling and structure only change the content to be for ken
               <div class="card latest-update-sec">
                 <div class="card-header">
                   <div class="header-top d-sm-flex align-items-center">
-                    <h5>Latest activity</h5>
+                    <h5>Latest Claims</h5>
                     <div class="center-content">
                       <ul class="week-date">
                         <li class="font-primary">Today</li>
@@ -305,13 +305,13 @@ without changing the styling and structure only change the content to be for ken
                                   </g>
                                 </g>
                               </svg>
-                              <div class="media-body"><span>Google project Apply Review</span>
+                              <div class="media-body"><span>Motor Insurance Claim</span>
                                 <p>Complete in 3 Hours</p>
                               </div>
                             </div>
                           </td>
-                          <td><a href="#" target="_blank">Edit</a></td>
-                          <td><a href="#" target="_blank">Delete</a></td>
+                          <td><a href="#" target="_blank">Review</a></td>
+                          <td><a href="#" target="_blank">Process</a></td>
                         </tr>
                         <tr>
                           <td>
@@ -319,7 +319,7 @@ without changing the styling and structure only change the content to be for ken
                               <svg enable-background="new 0 0 512 512" viewbox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
                                 <path d="m362 91v-60h-212v60h-150v390h512c0-16.889 0-372.29 0-390zm-182-30h152v30h-152zm302 390h-452v-202.844l90 36v46.844h90v-30h92v30h90v-46.844l90-36zm-302-150h-30v-60h30zm152-60h30v60h-30c0-7.259 0-52.693 0-60zm150-25.156-90 36v-40.844h-90v60h-92v-60h-90v40.844l-90-36c0-14.163 0-84.634 0-94.844h452z"></path>
                               </svg>
-                              <div class="media-body"><span>Business Logo Create</span>
+                              <div class="media-body"><span>Medical Claim</span>
                                 <p>Complete in 2 Days</p>
                               </div>
                             </div>
