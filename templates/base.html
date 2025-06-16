@@ -5,12 +5,12 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="viho admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
-    <meta name="keywords" content="admin template, viho admin template, dashboard template, flat admin template, responsive admin template, web app">
-    <meta name="author" content="pixelstrap">
+    <meta name="description" content="UAP Insurance Kenya - Comprehensive insurance solutions for individuals and businesses across Kenya.">
+    <meta name="keywords" content="insurance Kenya, car insurance, health insurance, life insurance, business insurance, medical cover Kenya">
+    <meta name="author" content="UAP Insurance">
     <link rel="icon" href="{% static 'assets/images/favicon.png'%}" type="image/x-icon">
     <link rel="shortcut icon" href="{% static 'assets/images/favicon.png'%}" type="image/x-icon">
-    <title>InnovationHub </title>
+    <title>Kenya Insurance Company</title>
     <!-- Google font-->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     {% comment %}
@@ -66,8 +66,8 @@
       <div class="page-main-header">
         <div class="main-header-right row m-0">
           <div class="main-header-left">
-            <div class="logo-wrapper"><a href="#"><img class="img-fluid" src="{% static 'assets/images/logo/logo.jpg'%}" alt=""></a></div>
-            <div class="dark-logo-wrapper"><a href="#"><img class="img-fluid" src="{% static 'assets/images/logo/dark-logo.png'%}" alt=""></a></div>
+            <div class="logo-wrapper"><a href="#"><img class="img-fluid" src="{% static 'assets/images/logo/uap-logo.jpg'%}" alt="UAP Insurance"></a></div>
+            <div class="dark-logo-wrapper"><a href="#"><img class="img-fluid" src="{% static 'assets/images/logo/uap-dark-logo.png'%}" alt="UAP Insurance"></a></div>
             <div class="toggle-sidebar"><i class="status_toggle middle" data-feather="align-center" id="sidebar-toggle"></i></div>
           </div>
           <div class="left-menu-header col">
@@ -75,7 +75,7 @@
               <li>
                 <form class="form-inline search-form">
                   <div class="search-bg"><i class="bi bi-search"></i>
-                    <input class="form-control-plaintext" placeholder="Search here.....">
+                    <input class="form-control-plaintext" placeholder="Search policies, claims...">
                   </div>
                 </form><span class="d-sm-none mobile-search search-bg"><i class="fa fa-search"></i></span>
               </li>
@@ -90,14 +90,14 @@
                   <div class="form-group mb-0">
                     <div class="input-group">
                       <div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-search"></i></span></div>
-                      <input class="form-control" type="text" placeholder="Search for bookmark...">
+                      <input class="form-control" type="text" placeholder="Search bookmarks...">
                     </div>
                   </div>
                   <ul class="m-t-5">
-                    <li class="add-to-bookmark"><i class="bookmark-icon" data-feather="inbox"></i>Email<span class="pull-right"><i data-feather="star"></i></span></li>
-                    <li class="add-to-bookmark"><i class="bookmark-icon" data-feather="message-square"></i>Chat<span class="pull-right"><i data-feather="star"></i></span></li>
-                    <li class="add-to-bookmark"><i class="bookmark-icon" data-feather="command"></i>Feather Icon<span class="pull-right"><i data-feather="star"></i></span></li>
-                    <li class="add-to-bookmark"><i class="bookmark-icon" data-feather="airplay"></i>Widgets<span class="pull-right"><i data-feather="star">   </i></span></li>
+                    <li class="add-to-bookmark"><i class="bookmark-icon" data-feather="file-text"></i>Policy Documents<span class="pull-right"><i data-feather="star"></i></span></li>
+                    <li class="add-to-bookmark"><i class="bookmark-icon" data-feather="shield"></i>Claims<span class="pull-right"><i data-feather="star"></i></span></li>
+                    <li class="add-to-bookmark"><i class="bookmark-icon" data-feather="users"></i>Agents<span class="pull-right"><i data-feather="star"></i></span></li>
+                    <li class="add-to-bookmark"><i class="bookmark-icon" data-feather="dollar-sign"></i>Premiums<span class="pull-right"><i data-feather="star"></i></span></li>
                   </ul>
                 </div>
               </li>
@@ -105,78 +105,61 @@
                 <div class="notification-box"><i data-feather="bell"></i><span class="dot-animated"></span></div>
                 <ul class="notification-dropdown onhover-show-div">
                   <li>
-                    <p class="f-w-700 mb-0">You have 3 Notifications<span class="pull-right badge badge-primary badge-pill">4</span></p>
+                    <p class="f-w-700 mb-0">You have 3 Notifications<span class="pull-right badge badge-primary badge-pill">3</span></p>
                   </li>
                   <li class="noti-primary">
-                    <div class="media"><span class="notification-bg bg-light-primary"><i data-feather="activity"> </i></span>
+                    <div class="media"><span class="notification-bg bg-light-primary"><i data-feather="file-text"> </i></span>
                       <div class="media-body">
-                        <p>Delivery processing </p><span>10 minutes ago</span>
+                        <p>New policy document available </p><span>10 minutes ago</span>
                       </div>
                     </div>
                   </li>
                   <li class="noti-secondary">
                     <div class="media"><span class="notification-bg bg-light-secondary"><i data-feather="check-circle"> </i></span>
                       <div class="media-body">
-                        <p>Order Complete</p><span>1 hour ago</span>
+                        <p>Claim approved</p><span>1 hour ago</span>
                       </div>
                     </div>
                   </li>
                   <li class="noti-success">
-                    <div class="media"><span class="notification-bg bg-light-success"><i data-feather="file-text"> </i></span>
+                    <div class="media"><span class="notification-bg bg-light-success"><i data-feather="calendar"> </i></span>
                       <div class="media-body">
-                        <p>Tickets Generated</p><span>3 hour ago</span>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="noti-danger">
-                    <div class="media"><span class="notification-bg bg-light-danger"><i data-feather="user-check"> </i></span>
-                      <div class="media-body">
-                        <p>Delivery Complete</p><span>6 hour ago</span>
+                        <p>Premium payment due</p><span>3 days from now</span>
                       </div>
                     </div>
                   </li>
                 </ul>
               </li>
               <li>
-                <div class="mode"><i  class="bi bi-sun"></i></div>
+                <div class="mode"><i class="bi bi-sun"></i></div>
               </li>
               <li class="onhover-dropdown"><i data-feather="message-square"></i>
                 <ul class="chat-dropdown onhover-show-div">
                   <li>
-                    <div class="media"><img class="img-fluid rounded-circle me-3" src="{% static 'assets/images/user/4.jpg'%}" alt="">
-                      <div class="media-body"><span>Ain Chavez</span>
-                        <p class="f-12 light-font">Lorem Ipsum is simply dummy...</p>
+                    <div class="media"><img class="img-fluid rounded-circle me-3" src="{% static 'assets/images/user/agent1.jpg'%}" alt="">
+                      <div class="media-body"><span>James Mwangi</span>
+                        <p class="f-12 light-font">Your motor insurance renewal is due...</p>
                       </div>
                       <p class="f-12">32 mins ago</p>
                     </div>
                   </li>
                   <li>
-                    <div class="media"><img class="img-fluid rounded-circle me-3" src="{% static 'assets/images/user/1.jpg'%}" alt="">
-                      <div class="media-body"><span>Erica Hughes</span>
-                        <p class="f-12 light-font">Lorem Ipsum is simply dummy...</p>
+                    <div class="media"><img class="img-fluid rounded-circle me-3" src="{% static 'assets/images/user/agent2.jpg'%}" alt="">
+                      <div class="media-body"><span>Susan Wanjiku</span>
+                        <p class="f-12 light-font">Your medical cover has been updated...</p>
                       </div>
-                      <p class="f-12">58 mins ago</p>
+                      <p class="f-12">2 hours ago</p>
                     </div>
                   </li>
-                  <li>
-                    <div class="media"><img class="img-fluid rounded-circle me-3" src="{% static 'assets/images/user/2.jpg'%}" alt="">
-                      <div class="media-body"><span>Kori Thomas</span>
-                        <p class="f-12 light-font">Lorem Ipsum is simply dummy...</p>
-                      </div>
-                      <p class="f-12">1 hr ago</p>
-                    </div>
-                  </li>
-                  <li class="text-center"> <a class="f-w-700" href="javascript:void(0)">See All     </a></li>
+                  <li class="text-center"> <a class="f-w-700" href="javascript:void(0)">View All Messages</a></li>
                 </ul>
               </li>
               <li class="onhover-dropdown p-0">
                 {% if request.user.is_authenticated %}
                 <button class="btn btn-primary-light" type="button"><a href="{% url 'logout'%}"><i data-feather="log-out"></i>Log out</a></button>
-
                 {% else %}
                 <button class="btn btn-primary-light" type="button"><a href="{% url 'login'%}"><i data-feather="log-in"></i>Login</a></button>
                 {% endif %}
-
               </li>
             </ul>
           </div>

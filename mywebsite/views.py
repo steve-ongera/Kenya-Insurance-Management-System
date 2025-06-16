@@ -11,7 +11,7 @@ class LoginForm(forms.Form):
 
 def login_view(request):
     if request.user.is_authenticated:
-        return redirect('home')  # or your dashboard
+        return redirect('dashboard')  # or your dashboard
 
     if request.method == 'POST':
         form = LoginForm(request.POST)
@@ -21,7 +21,7 @@ def login_view(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('home')  # or your target page
+                return redirect('dashboard')  # or your target page
             else:
                 messages.error(request, 'Invalid username or password.')
     else:
@@ -34,3 +34,32 @@ def logout_view(request):
     logout(request)
     messages.success(request, 'You have been logged out.')
     return redirect('login')
+
+from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+from django.db.models import Sum, Count, Q
+from .models import Customer, Policy, Claim, Payment, Commission, InsuranceProduct
+
+@login_required
+def dashboard_view(request):
+    context = {
+        'total_customers': Customer.objects.count(),
+        'total_policies': Policy.objects.count(),
+        'active_policies': Policy.objects.filter(status='active').count(),
+        'expired_policies': Policy.objects.filter(status='expired').count(),
+
+        'total_claims': Claim.objects.count(),
+        'approved_claims': Claim.objects.filter(status='approved').count(),
+        'settled_claims': Claim.objects.filter(status='settled').count(),
+        'pending_claims': Claim.objects.filter(status__in=['reported', 'investigating', 'processing']).count(),
+
+        'total_premiums': Policy.objects.aggregate(total=Sum('premium_amount'))['total'] or 0,
+        'total_claims_paid': Claim.objects.aggregate(total=Sum('paid_amount'))['total'] or 0,
+
+        'total_payments': Payment.objects.filter(payment_type='premium').aggregate(total=Sum('amount'))['total'] or 0,
+        'claim_payouts': Payment.objects.filter(payment_type='claim').aggregate(total=Sum('amount'))['total'] or 0,
+
+        'total_commissions': Commission.objects.aggregate(total=Sum('commission_amount'))['total'] or 0,
+    }
+
+    return render(request, 'dashboard/dashboard.html', context)
