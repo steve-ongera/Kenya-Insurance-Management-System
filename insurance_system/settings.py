@@ -104,10 +104,23 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.2/howto/static-files/
+# URL to use when referring to static files (e.g., in templates)
+STATIC_URL = '/static/'
 
-STATIC_URL = 'static/'
+# Local development: Directory where static files will be collected
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
+# Production: The directory where `collectstatic` will gather files
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# URL to use when referring to media files uploaded by users
+MEDIA_URL = '/media/'
+
+# Path on the filesystem where media is stored
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
