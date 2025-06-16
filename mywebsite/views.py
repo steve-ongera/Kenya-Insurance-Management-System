@@ -27,7 +27,7 @@ def login_view(request):
     else:
         form = LoginForm()
 
-    return render(request, 'accounts/login.html', {'form': form})
+    return render(request, 'auth/login.html', {'form': form})
 
 @login_required
 def logout_view(request):

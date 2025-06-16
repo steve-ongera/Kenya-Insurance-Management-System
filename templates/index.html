@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Welcome, {{ user.username }}</h1>
+
+    <h2>Total Amount Paid by All Users: KSh {{ total_amount_paid }}</h2>
+    <h2>Total Number of Users: {{ total_users }}</h2>
+
+    <h2>Your Payment History Graph</h2>
+    <canvas id="paymentChart" width="400" height="200"></canvas>
+    <script>
+        var ctx = document.getElementById('paymentChart').getContext('2d');
+        var paymentChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: {{ months|safe }},
+                datasets: [{
+                    label: 'Amount Paid',
+                    data: {{ amounts|safe }},
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        beginAtZero: true
+                    },
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+
+    <h2>Recent Transactions</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>Description</th>  <!-- Optional, if you have a description field -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for transaction in recent_transactions %}
+                <tr>
+                    <td>{{ transaction.date }}</td>
+                    <td>KSh {{ transaction.amount }}</td>
+                    <td>{{ transaction.description }}</td>  <!-- Optional -->
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="3">No recent transactions found.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

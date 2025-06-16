@@ -1,0 +1,213 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Kenya Insurance Portal - Secure access to your insurance policies, claims, and account management">
+    <meta name="keywords" content="insurance Kenya, Kenya insurance login, policy management, insurance claims, motor insurance, health insurance">
+    <meta name="author" content="Kenya Insurance Company">
+    <link rel="icon" href="{% static 'assets/images/favicon.png'%}" type="image/x-icon">
+    <link rel="shortcut icon" href="{% static 'assets/images/favicon.png'%}" type="image/x-icon">
+    <title>Kenya Insurance - Secure Login</title>
+    <!-- Google font-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="css2.css?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+    <link href="css2-1.css?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&amp;display=swap" rel="stylesheet">
+    <link href="css2-2.css?family=Rubik:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+    <!-- Font Awesome-->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/fontawesome.css'%}">
+    <!-- ico-font-->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/icofont.css'%}">
+    <!-- Themify icon-->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/themify.css'%}">
+    <!-- Flag icon-->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/flag-icon.css'%}">
+    <!-- Feather icon-->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/feather-icon.css'%}">
+    <!-- Plugins css start-->
+    <!-- Plugins css Ends-->
+    <!-- Bootstrap css-->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/bootstrap.css'%}">
+
+    <!-- Vendor CSS Files -->
+    <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css'%}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css'%}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/boxicons/css/boxicons.min.css'%}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/quill/quill.snow.css'%}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/quill/quill.bubble.css'%}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/remixicon/remixicon.css'%}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/simple-datatables/style.css'%}" rel="stylesheet">
+
+    <!-- App css-->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css'%}">
+    <link id="color" rel="stylesheet" href="{% static 'assets/css/color-1.css'%}" media="screen">
+    <!-- Responsive css-->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/responsive.css'%}">
+
+    <style>
+        .alert {
+            margin-top: 20px;
+        }
+        .alert.warning {
+            color: #fff;
+            background-color: #ff9800;
+            border-color: #ff9800;
+        }
+        .alert.warning button {
+            color: #000;
+        }
+        .alert.warning button:hover {
+            color: #fff;
+        }
+        .alert.warning button:focus {
+            box-shadow: none;
+        }
+            /* Alerts */
+        .alert-heading {
+        font-weight: 500;
+        font-family: "Poppins", sans-serif;
+        font-size: 20px;
+        }
+    
+        /* Close Button */
+        .btn-close {
+        background-size: 25%;
+        }
+    
+        .btn-close:focus {
+        outline: 0;
+        box-shadow: none;
+        }
+    </style>
+  
+    
+  </head>
+  <body>
+    <!-- Loader starts-->
+    <div class="loader-wrapper">
+      <div class="theme-loader">    
+        <div class="loader-p"></div>
+      </div>
+    </div>
+    <!-- Loader ends-->
+    <!-- page-wrapper Start-->
+    <section>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xl-5"><img class="bg-img-cover bg-center" src="{% static 'assets/images/login/3.jpg'%}" alt="Kenya Insurance Secure Login"></div>
+          <div class="col-xl-7 p-0">
+            
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }} warning alert-dismissible fade show" role="alert">
+                            <strong>{{ message }}</strong> 
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+            <div class="login-card">
+              <form class="theme-form login-form" method="post">
+                {% csrf_token %}
+                <h4>Kenya Insurance Portal</h4>
+                <h6>Secure access to your policies and claims</h6>
+                <div class="form-group">
+                  <label>Policy Number/Email</label>
+                  <div class="input-group"><span class="input-group-text"><i class="bi bi-person-badge"></i></span>
+                    <input class="form-control" type="text" required="" name="username" id="username" placeholder="Enter your policy number or email">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Password</label>
+                  <div class="input-group"><span class="input-group-text"><i class="bi bi-shield-lock"></i></span>
+                    <input class="form-control" type="password" name="password" id="password" required="" placeholder="Enter your password">
+                    <div class="show-hide"><span class="bi bi-eye"></span></div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="checkbox">
+                    <input id="checkbox1" type="checkbox">
+                    <label class="text-muted" for="checkbox1">Keep me signed in</label>
+                  </div><a class="link" href="forget-password.html">Forgot your password?</a>
+                </div>
+                <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Access My Policy</button></div>
+                <div class="login-social-title">                
+                  <h5>Connect with us</h5>
+                </div>
+                <div class="form-group">
+                  <ul class="login-social">
+                    <li><a href="#" target="_blank" title="Kenya Insurance LinkedIn"><i data-feather="linkedin"></i></a></li>
+                    <li><a href="#" target="_blank" title="Kenya Insurance Twitter"><i data-feather="twitter"></i></a></li>
+                    <li><a href="#" target="_blank" title="Kenya Insurance Facebook"><i data-feather="facebook"></i></a></li>
+                    <li><a href="#" target="_blank" title="Kenya Insurance Instagram"><i data-feather="instagram"></i></a></li>
+                  </ul>
+                </div>
+                <p>New to Kenya Insurance?<a class="ms-2" href="#">Register for online access</a></p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- page-wrapper end-->
+    <!-- latest jquery-->
+    <script src="{% static 'assets/js/jquery-3.5.1.min.js'%}"></script>
+    <!-- feather icon js-->
+    <script src="{% static 'assets/js/icons/feather-icon/feather.min.js'%}"></script>
+    <script src="{% static 'assets/js/icons/feather-icon/feather-icon.js'%}"></script>
+    <!-- Sidebar jquery-->
+    <script src="{% static 'assets/js/sidebar-menu.js'%}"></script>
+    <script src="{% static 'assets/js/config.js'%}"></script>
+    <!-- Bootstrap js-->
+    <script src="{% static 'assets/js/bootstrap/popper.min.js'%}"></script>
+    <script src="{% static 'assets/js/bootstrap/bootstrap.min.js'%}"></script>
+    <!-- Plugins JS start-->
+    <!-- Plugins JS Ends-->
+    <!-- Theme js-->
+    <script src="{% static 'assets/js/script.js'%}"></script>
+    <!-- login js-->
+    <!-- Plugin used-->
+
+    <!-- Vendor JS Files -->
+    <script src="{% static 'assets/vendor/apexcharts/apexcharts.min.js'%}"></script>
+    <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+    <script src="{% static 'assets/vendor/chart.js/chart.umd.js'%}"></script>
+    <script src="{% static 'assets/vendor/echarts/echarts.min.js'%}"></script>
+    <script src="{% static 'assets/vendor/quill/quill.min.js'%}"></script>
+    <script src="{% static 'assets/vendor/simple-datatables/simple-datatables.js'%}"></script>
+    <script src="{% static 'assets/vendor/tinymce/tinymce.min.js'%}"></script>
+    <script src="{% static 'assets/vendor/php-email-form/validate.js'%}"></script>
+
+    <!-- Password Toggle Script -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Password toggle functionality
+        const passwordField = document.getElementById('password');
+        const togglePassword = document.querySelector('.show-hide span');
+        
+        if (togglePassword && passwordField) {
+            togglePassword.addEventListener('click', function() {
+                // Toggle password field type
+                const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordField.setAttribute('type', type);
+                
+                // Toggle eye icon
+                this.classList.toggle('bi-eye');
+                this.classList.toggle('bi-eye-slash');
+            });
+        }
+
+        // Auto-close alerts after 5 seconds
+        const alerts = document.querySelectorAll('.alert');
+        alerts.forEach(alert => {
+            setTimeout(() => {
+                const bsAlert = new bootstrap.Alert(alert);
+                bsAlert.close();
+            }, 5000);
+        });
+    });
+    </script>
+  </body>
+</html>
