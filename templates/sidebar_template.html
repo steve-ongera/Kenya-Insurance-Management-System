@@ -35,7 +35,7 @@
                 </div>
               </li>
            
-              <li ><a class="nav-link menu-title" href="#"><span>Dashboard</span></a>
+              <li ><a class="nav-link menu-title" href="{% url 'dashboard'%}"><span>Dashboard</span></a>
                 
               </li>
               <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="airplay"></i><span>Policies</span></a>
@@ -62,8 +62,8 @@
               <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="box"></i><span>Customers</span></a>
                 <ul class="nav-submenu menu-content">
                   <li><a href="{% url 'customer-list'%}">Customer List</a></li>
-                  <li><a href="#">Add Customer</a></li>
-                  <li><a href="#">Search Customer</a></li>
+                  <li><a href="{% url 'add-customer'%}">Add Customer</a></li>
+                  <li><a href="{% url 'search-customers'%}">Search Customer</a></li>
                   <li><a href="#">Segmentation</a></li>
                   <li><a href="#">Communication</a></li>
                   <li><a href="#">Renewals</a></li>

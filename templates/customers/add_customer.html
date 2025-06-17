@@ -1,0 +1,219 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="page-body">
+    <div class="container-fluid">
+        <div class="page-header">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h3>Add New Customer</h3>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+                        <li class="breadcrumb-item">Customers</li>
+                        <li class="breadcrumb-item active">Add Customer</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Customer Information</h5>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            
+                            <!-- Customer Type Selection -->
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">Customer Type*</label>
+                                    {{ form.customer_type }}
+                                </div>
+                            </div>
+                            
+                            <!-- Dynamic form fields based on customer type -->
+                            <div id="individual-fields">
+                                <!-- Individual Customer Fields -->
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label class="form-label">First Name*</label>
+                                            {{ form.first_name }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label class="form-label">Middle Name</label>
+                                            {{ form.middle_name }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label class="form-label">Last Name*</label>
+                                            {{ form.last_name }}
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label class="form-label">Date of Birth</label>
+                                            {{ form.date_of_birth }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label class="form-label">Gender</label>
+                                            {{ form.gender }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label class="form-label">National ID</label>
+                                            {{ form.national_id }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div id="business-fields" style="display:none;">
+                                <!-- Business Customer Fields -->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Company Name*</label>
+                                            {{ form.company_name }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Business Type</label>
+                                            {{ form.business_type }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Registration Number</label>
+                                            {{ form.registration_number }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">KRA PIN</label>
+                                            {{ form.kra_pin }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Contact Information -->
+                            <h6 class="mb-3">Contact Information</h6>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Phone Number*</label>
+                                        {{ form.phone_number }}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Email</label>
+                                        {{ form.email }}
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Address Information -->
+                            <h6 class="mb-3">Address Information</h6>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <label class="form-label">Physical Address*</label>
+                                        {{ form.physical_address }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Postal Address</label>
+                                        {{ form.postal_address }}
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="mb-3">
+                                        <label class="form-label">Town/City*</label>
+                                        {{ form.town }}
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="mb-3">
+                                        <label class="form-label">County*</label>
+                                        {{ form.county }}
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Additional Information -->
+                            <h6 class="mb-3">Additional Information</h6>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Branch</label>
+                                        {{ form.branch }}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Agent</label>
+                                        {{ form.agent }}
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-footer text-end">
+                                <button type="submit" class="btn btn-primary">Save Customer</button>
+                                <a href="{% url 'customer-list' %}" class="btn btn-light">Cancel</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript to toggle between individual and business fields -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const customerType = document.getElementById('id_customer_type');
+    const individualFields = document.getElementById('individual-fields');
+    const businessFields = document.getElementById('business-fields');
+    
+    function toggleFields() {
+        if (customerType.value === 'individual') {
+            individualFields.style.display = 'block';
+            businessFields.style.display = 'none';
+        } else {
+            individualFields.style.display = 'none';
+            businessFields.style.display = 'block';
+        }
+    }
+    
+    // Initial toggle
+    toggleFields();
+    
+    // Add event listener
+    customerType.addEventListener('change', toggleFields);
+});
+</script>
+{% endblock %}

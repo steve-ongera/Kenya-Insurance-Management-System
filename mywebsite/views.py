@@ -183,3 +183,56 @@ def customer_detail(request, customer_uuid):
     }
     
     return render(request, 'customers/customer_detail.html', context)
+
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from .forms import CustomerForm  # You'll need to create this form
+from .models import Customer
+
+def add_customer(request):
+    if request.method == 'POST':
+        form = CustomerForm(request.POST)
+        if form.is_valid():
+            customer = form.save()
+            messages.success(request, f'Customer {customer.get_display_name()} created successfully!')
+            return redirect('customer-detail', pk=customer.pk)  # Redirect to customer detail page
+    else:
+        form = CustomerForm()
+    
+    context = {
+        'title': 'Add New Customer',
+        'form': form,
+    }
+    return render(request, 'customers/add_customer.html', context)
+
+from django.db.models import Q
+from django.core.paginator import Paginator
+
+def search_customers(request):
+    query = request.GET.get('q', '')
+    customers = Customer.objects.all().order_by('-created_at')[:10]
+    
+    if query:
+        # Search in multiple fields (name, phone, email, customer number)
+        customers = customers.filter(
+            Q(first_name__icontains=query) |
+            Q(last_name__icontains=query) |
+            Q(phone_number__icontains=query) |
+            Q(email__icontains=query) |
+            Q(customer_number__icontains=query) |
+            Q(company_name__icontains=query) |
+            Q(national_id__icontains=query) |
+            Q(kra_pin__icontains=query)
+        ).distinct()
+    
+    # Pagination
+    paginator = Paginator(customers, 25)  # Show 25 customers per page
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    
+    context = {
+        'page_obj': page_obj,
+        'query': query,
+        'title': 'Customer Search',
+    }
+    return render(request, 'customers/customer_search.html', context)

@@ -26,3 +26,22 @@ class CustomerEditForm(forms.ModelForm):
             if not isinstance(field.widget, forms.CheckboxInput):  # Avoid adding form-control to checkboxes
                 existing_classes = field.widget.attrs.get('class', '')
                 field.widget.attrs['class'] = f'{existing_classes} form-control'.strip()
+
+
+from django import forms
+from .models import Customer
+
+class CustomerForm(forms.ModelForm):
+    class Meta:
+        model = Customer
+        fields = '__all__'  # Or specify fields you want to include
+        
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Add Bootstrap classes to form fields
+        for field in self.fields:
+            self.fields[field].widget.attrs.update({'class': 'form-control'})
+        
+        # You can customize specific fields here
+        self.fields['date_of_birth'].widget.attrs.update({'type': 'date'})
+        self.fields['phone_number'].widget.attrs.update({'placeholder': 'e.g. +254712345678'})
