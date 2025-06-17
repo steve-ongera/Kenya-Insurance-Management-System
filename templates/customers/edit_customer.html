@@ -1,0 +1,272 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="page-body">
+    <div class="container-fluid">
+        <div class="page-header">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h3>Edit Customer</h3>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+                        <li class="breadcrumb-item">Customers</li>
+                        <li class="breadcrumb-item active">Edit Customer</li>
+                    </ol>
+                </div>
+                <div class="col-sm-6">
+                    <div class="bookmark">
+                        <ul>
+                            <li><a href="javascript:void(0)" data-container="body" data-bs-toggle="popover" data-placement="top" title="" data-original-title="Tables"><i data-feather="inbox"></i></a></li>
+                            <li><a href="javascript:void(0)" data-container="body" data-bs-toggle="popover" data-placement="top" title="" data-original-title="Chat"><i data-feather="message-square"></i></a></li>
+                            <li><a href="javascript:void(0)" data-container="body" data-bs-toggle="popover" data-placement="top" title="" data-original-title="Icons"><i data-feather="command"></i></a></li>
+                            <li><a href="javascript:void(0)" data-container="body" data-bs-toggle="popover" data-placement="top" title="" data-original-title="Learning"><i data-feather="layers"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container-fluid">
+        <div class="edit-profile">
+            <div class="row">
+                <div class="col-xl-4">
+                    <div class="card">
+                        <div class="card-header pb-0">
+                            <h4 class="card-title mb-0">Customer Profile</h4>
+                            <div class="card-options">
+                                <a class="card-options-collapse" href="#" data-bs-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
+                                <a class="card-options-remove" href="#" data-bs-toggle="card-remove"><i class="fe fe-x"></i></a>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row mb-2">
+                                <div class="profile-title">
+                                    <div class="media">
+                                        <img class="img-70 rounded-circle" alt="" src="{% static 'assets/images/user/profile.webp' %}">
+                                        <div class="media-body">
+                                            <h3 class="mb-1 f-20 txt-primary">
+                                                {% if customer.customer_type == 'individual' %}
+                                                    {{ customer.first_name }} {{ customer.last_name }}
+                                                {% else %}
+                                                    {{ customer.company_name }}
+                                                {% endif %}
+                                            </h3>
+                                            <p class="f-12">{{ customer.get_customer_type_display|upper }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <h6 class="form-label">Customer Number</h6>
+                                <p class="form-control-static">{{ customer.customer_number }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <h6 class="form-label">Customer Since</h6>
+                                <p class="form-control-static">{{ customer.created_at|date:"M d, Y" }}</p>
+                            </div>
+                            {% if customer.customer_type == 'individual' %}
+                            <div class="mb-3">
+                                <h6 class="form-label">Date of Birth</h6>
+                                <p class="form-control-static">
+                                    {% if customer.date_of_birth %}
+                                        {{ customer.date_of_birth|date:"M d, Y" }}
+                                    {% else %}
+                                        Not specified
+                                    {% endif %}
+                                </p>
+                            </div>
+                            {% else %}
+                            <div class="mb-3">
+                                <h6 class="form-label">Business Type</h6>
+                                <p class="form-control-static">{{ customer.business_type|default:"Not specified" }}</p>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-xl-8">
+                    <form class="card" method="POST">
+                        {% csrf_token %}
+                        <div class="card-header pb-0">
+                            <h4 class="card-title mb-0">Edit Customer Details</h4>
+                            <div class="card-options">
+                                <a class="card-options-collapse" href="#" data-bs-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
+                                <a class="card-options-remove" href="#" data-bs-toggle="card-remove"><i class="fe fe-x"></i></a>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <!-- Customer Type Toggle -->
+                                <div class="col-md-12 mb-3">
+                                    <label class="form-label">Customer Type</label>
+                                    <div class="btn-group w-100" role="group">
+                                        <input type="radio" class="btn-check" name="customer_type" id="individual" value="individual" 
+                                               {% if customer.customer_type == 'individual' %}checked{% endif %}>
+                                        <label class="btn btn-outline-primary" for="individual">Individual</label>
+                                        
+                                        <input type="radio" class="btn-check" name="customer_type" id="corporate" value="corporate" 
+                                               {% if customer.customer_type == 'corporate' %}checked{% endif %}>
+                                        <label class="btn btn-outline-primary" for="corporate">Corporate</label>
+                                    </div>
+                                </div>
+                                
+                                <!-- Individual Customer Fields -->
+                                <div id="individual-fields" class="row" {% if customer.customer_type == 'corporate' %}style="display:none;"{% endif %}>
+                                    <div class="col-sm-4">
+                                        <div class="mb-3">
+                                            <label class="form-label">First Name</label>
+                                            {{ form.first_name }}
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="mb-3">
+                                            <label class="form-label">Middle Name</label>
+                                            {{ form.middle_name }}
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="mb-3">
+                                            <label class="form-label">Last Name</label>
+                                            {{ form.last_name }}
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-3">
+                                        <div class="mb-3">
+                                            <label class="form-label">Gender</label>
+                                            {{ form.gender }}
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-4">
+                                        <div class="mb-3">
+                                            <label class="form-label">Date of Birth</label>
+                                            {{ form.date_of_birth }}
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-5">
+                                        <div class="mb-3">
+                                            <label class="form-label">National ID</label>
+                                            {{ form.national_id }}
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Corporate Customer Fields -->
+                                <div id="corporate-fields" class="row" {% if customer.customer_type == 'individual' %}style="display:none;"{% endif %}>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Company Name</label>
+                                            {{ form.company_name }}
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-3">
+                                        <div class="mb-3">
+                                            <label class="form-label">Registration No.</label>
+                                            {{ form.registration_number }}
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-3">
+                                        <div class="mb-3">
+                                            <label class="form-label">KRA PIN</label>
+                                            {{ form.kra_pin }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">Business Type</label>
+                                            {{ form.business_type }}
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Common Fields -->
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Phone Number</label>
+                                        {{ form.phone_number }}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Email</label>
+                                        {{ form.email }}
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <label class="form-label">Physical Address</label>
+                                        {{ form.physical_address }}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Postal Address</label>
+                                        {{ form.postal_address }}
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-3">
+                                    <div class="mb-3">
+                                        <label class="form-label">Town</label>
+                                        {{ form.town }}
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-3">
+                                    <div class="mb-3">
+                                        <label class="form-label">County</label>
+                                        {{ form.county }}
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Branch</label>
+                                        {{ form.branch }}
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Agent</label>
+                                        {{ form.agent }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer text-end">
+                            <button type="button" class="btn btn-light" onclick="window.history.back();">Cancel</button>
+                            <button class="btn btn-primary" type="submit">Update Customer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Toggle between individual and corporate fields
+document.querySelectorAll('input[name="customer_type"]').forEach(radio => {
+    radio.addEventListener('change', function() {
+        if (this.value === 'individual') {
+            document.getElementById('individual-fields').style.display = 'flex';
+            document.getElementById('corporate-fields').style.display = 'none';
+        } else {
+            document.getElementById('individual-fields').style.display = 'none';
+            document.getElementById('corporate-fields').style.display = 'flex';
+        }
+    });
+});
+
+// Initialize date picker for date of birth
+document.addEventListener('DOMContentLoaded', function() {
+    if (document.getElementById('id_date_of_birth')) {
+        new Pikaday({
+            field: document.getElementById('id_date_of_birth'),
+            format: 'YYYY-MM-DD',
+            maxDate: new Date(),
+            yearRange: [1900, new Date().getFullYear()],
+        });
+    }
+});
+</script>
+{% endblock %}

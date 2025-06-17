@@ -116,3 +116,57 @@ def dashboard_view(request):
     }
     
     return render(request, 'dashboard/dashboard.html', context)
+
+
+
+from django.views.generic import ListView
+from django.db.models import Q
+from .models import Customer
+
+class CustomerListView(ListView):
+    model = Customer
+    template_name = 'customers/customer_list.html'
+    context_object_name = 'customers'
+    paginate_by = 10
+    ordering = ['-created_at']
+    
+    def get_queryset(self):
+        queryset = super().get_queryset().select_related('branch', 'agent')
+        search_query = self.request.GET.get('q')
+        
+        if search_query:
+            queryset = queryset.filter(
+                Q(customer_number__icontains=search_query) |
+                Q(first_name__icontains=search_query) |
+                Q(last_name__icontains=search_query) |
+                Q(company_name__icontains=search_query) |
+                Q(phone_number__icontains=search_query) |
+                Q(email__icontains=search_query) |
+                Q(national_id__icontains=search_query) |
+                Q(passport_number__icontains=search_query)
+            )
+        return queryset
+    
+
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib import messages
+from .models import Customer, Branch
+from .forms import CustomerEditForm
+
+def edit_customer(request, customer_id):
+    customer = get_object_or_404(Customer, id=customer_id)
+    
+    if request.method == 'POST':
+        form = CustomerEditForm(request.POST, instance=customer)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Customer details updated successfully!')
+            return redirect('customer-list')  # Replace with your customer list URL name
+    else:
+        form = CustomerEditForm(instance=customer)
+    
+    context = {
+        'customer': customer,
+        'form': form,
+    }
+    return render(request, 'customers/edit_customer.html', context)
