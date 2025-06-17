@@ -170,3 +170,16 @@ def edit_customer(request, customer_id):
         'form': form,
     }
     return render(request, 'customers/edit_customer.html', context)
+
+from django.shortcuts import render, get_object_or_404
+from .models import Customer
+
+def customer_detail(request, customer_uuid):
+    customer = get_object_or_404(Customer, id=customer_uuid)
+    
+    context = {
+        'customer': customer,
+        'title': 'Customer Details',
+    }
+    
+    return render(request, 'customers/customer_detail.html', context)

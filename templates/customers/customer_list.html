@@ -110,7 +110,7 @@
                                                 <ul class="dropdown-menu dropdown-menu-end" 
                                                     aria-labelledby="dropdownMenuButton{{ customer.pk }}">
                                                     <li>
-                                                        <a class="dropdown-item" href="#">
+                                                        <a class="dropdown-item" href="{% url 'customer_detail' customer.id %}">
                                                             <i class="fa fa-eye me-2 text-primary"></i> View
                                                         </a>
                                                     </li>
